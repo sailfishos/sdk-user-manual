@@ -1,0 +1,97 @@
+project         = Sailfish App Library
+description     = Sailfish App Library Reference Documentation
+versionsym      =
+version         = 1.0.0
+url             = https://github.com/sailfishos/sdk-user-manual/
+
+sourcedirs += $$PWD/../doc $$PWD/../src
+headerdirs += $$PWD/../include
+
+sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
+
+exampledirs = $$PWD/../examples \
+              $$PWD/../doc
+
+# See https://bugreports.qt.io/browse/QTBUG-59045
+Cpp.ignoretokens += SAILFISHAPP_EXPORT
+
+outputformats = HTML
+outputdir = $$PWD/../doc/html
+base = file:$$PWD/../doc/html
+tagfile = $$PWD/../doc/html/libsailfishapp.tags
+
+outputprefixes = QML
+outputprefixes.QML = qml-SailfishAppLibrary-
+
+qhp.projects = SailfishAppLibrary
+
+qhp.SailfishAppLibrary.file = sdk-user-manual.qhp
+qhp.SailfishAppLibrary.namespace = org.sailfishos.libsailfishapp.1.0.0
+qhp.SailfishAppLibrary.virtualFolder = sdk-user-manual
+qhp.SailfishAppLibrary.indexTitle = Sailfish App Library Overview
+qhp.SailfishAppLibrary.indexRoot =
+
+qhp.SailfishAppLibrary.filterAttributes = libsailfishapp 1.0.0
+qhp.SailfishAppLibrary.customFilters.SailfishAppLibrary.name = Sailfish OS libsailfishapp 1.0.0
+qhp.SailfishAppLibrary.customFilters.SailfishAppLibrary.filterAttributes = libsailfishapp 1.0.0
+
+imagedirs = images
+
+HTML.extraimages += images/develop.png images/background.jpg
+
+HTML.headerstyles = "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Source+Sans+Pro\"/>\n" 
+
+HTML.postheader += \
+    "<style type=\"text/css\">\n" \
+    "body {\n" \
+    "    font-family: \"Source Sans Pro\", \"Helvetica Neue\", Helvetica, Arial, sans-serif !important;\n" \
+    "    background-image: url(images/background.jpg);\n" \
+    "    background-attachment: fixed;\n" \
+    "}\n" \
+    "div.content {\n" \
+    "    margin: 20px;\n" \
+    "    padding: 10px;\n" \
+    "    max-width: 600px;\n" \
+    "    background-color: rgba(255, 255, 255, 0.9);\n" \
+    "}\n" \
+    ".centerAlign {\n" \
+    "   float: right;\n" \
+    "   padding: 25px;\n" \
+    "   margin-top: -30px;\n" \
+    "}\n" \
+    ".header {\n" \
+    "    visibility: hidden;\n" \
+    "    height: 0px;\n" \
+    "}\n" \
+    "div.header {\n" \
+    "    color: white;\n" \
+    "}\n" \
+    "div.footer {\n" \
+    "    color: white;\n" \
+    "}\n" \
+    "a {\n" \
+    "    color: rgb(0, 102, 153);\n" \
+    "}\n" \
+    "code, pre {\n" \
+    "    padding: 2px;\n" \
+    "    margin: 2px;\n" \
+    "    background-color: white;\n" \
+    "}\n" \
+    "</style>\n" \
+
+HTML.footer += \
+    "<div class=\"footer\">\n" \
+    "  <p><acronym title=\"Copyright\">&copy;</acronym> 2019 Jolla Ltd.</p>\n" \
+    "  <p>All other trademarks are property of their respective owners.</p>\n" \
+    "  <p>\n" \
+    "    This document may be used under the terms of the Creative Commons" \
+    "    <a href=\"https://creativecommons.org/licenses/by-nc-sa/3.0/\">" \
+    "    Attribution-NonCommercial-ShareAlike 3.0 Unported licence" \
+    "    (CC BY-NC-SA 3.0)</a>. The example code may be used under the terms" \
+    "    of the <a href=\"https://opensource.org/licenses/BSD-3-Clause\">" \
+    "    BSD License 2.0 (3-clause)</a>." \
+    "  </p>\n" \
+    "</div>\n"
+
+navigation.homepage = "Sailfish App Library Overview"
