@@ -1,0 +1,59 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-app-config.html
+\previouspage {Installing and using private QML imports}
+\nextpage {Storing application data and cached files}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Storing application configuration files
+
+On Sailfish OS, the application directory locations follow the \l
+{https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html}
+{XDG Base Directory Specification}. Accordingly, all application configuration
+files should be stored relative to the directory defined by the \c
+$XDG_CONFIG_HOME environment variable. More specifically, a Sailfish
+application should store its configuration files in the \c
+$XDG_CONFIG_HOME/$$TARGET directory.
+
+In practice, this means storing them in \c $HOME/.config/$$TARGET. However,
+this path shouldn't be hardcoded and for users of \c SailfishApp the
+appropriate Qt \c QStandardPath should be used instead.
+
+\quotefromfile example-others/src/harbour-demo-11.cpp
+
+\skipto config_dir
+\printuntil filePath
+
+When using \c SailfishApp, the application name will be automatically set to
+ensure this path works correctly. \c SailfishApp uses the binary name in the
+case of a C++ applications or the first argument in the case of a QML-only
+application with the \c{sailfish-qml} launcher
+
+Here's a brief example, based on the code from \l { Sailfish SDK User Manual }
+{ previous sections }, which loads a configuration variable in at the start and
+saves it out at the end using standard file operations. The directory isn't
+created automatically, so notice we have to create it in order to allow the
+configuration file to be written out successfully at the end.
+
+\quotefile example-others/src/harbour-demo-11.cpp
+
+We can make our code even simpler and more effective by harnessing the \c
+QSettings class. With the \c QSettings default constructor, the application
+name is again used to automatically select the correct storage location.
+
+\quotefile example-others/src/harbour-demo-12.cpp
+
+Currently application-specific configurations aren't stored as part of the
+Sailfish OS backup process and the files will remain on the device if the
+application is uninstalled. However, this isn't guaranteed behaviour and so
+shouldn't be relied upon not to change in the future.
+
+*/
+

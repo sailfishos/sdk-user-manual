@@ -1,0 +1,48 @@
+language        = Cpp
+
+project         = Sailfish SDK User Manual
+description     = Sailfish SDK and Sailfish App Library Reference
+versionsym      =
+version         = 1.0.0
+url             = https://github.com/sailfishos/sdk-user-manual/
+
+headerdirs += $$PWD/../doc/src
+sourcedirs += $$PWD/../doc/src
+
+exampledirs = $$PWD/../examples \
+              $$PWD/../doc/src
+
+# See https://bugreports.qt.io/browse/QTBUG-59045
+Cpp.ignoretokens += SAILFISHAPP_EXPORT
+
+outputformats = HTML
+outputdir = $$PWD/../doc/html
+base = file:$$PWD/../doc/html
+tagfile = $$PWD/../doc/html/sdk-user-manual.tags
+
+outputprefixes = QML
+outputprefixes.QML = qml-sdkmanual-
+
+qhp.projects = sdkmanual
+
+qhp.sdkmanual.subprojects = manual
+qhp.sdkmanual.subprojects.manual.title = Sailfish SDK User Manuall
+qhp.sdkmanual.subprojects.manual.indexTitle = Sailfish SDK User Manual
+qhp.sdkmanual.subprojects.manual.selectors = fake:page
+qhp.sdkmanual.subprojects.manual.type = manual
+
+qhp.sdkmanual.file = sdk-user-manual.qhp
+qhp.sdkmanual.namespace = org.sailfishos.sdkusermanual.1.0.0
+qhp.sdkmanual.virtualFolder = sdk-user-manual
+qhp.sdkmanual.indexTitle = Sailfish SDK User Manual
+qhp.sdkmanual.indexRoot =
+
+qhp.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
+qhp.sdkmanual.customFilters.sdkmanual.name = Sailfish OS User Manual 1.0.0
+qhp.sdkmanual.customFilters.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
+
+imagedirs = images
+
+navigation.homepage = "Sailfish SDK User Manual"
+
+include(qt-html-templates.qdocconf)

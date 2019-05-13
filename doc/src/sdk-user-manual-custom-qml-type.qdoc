@@ -1,0 +1,83 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-custom-qml-type.html
+\previouspage {Register a custom QML singleton type at runtime}
+\nextpage {Installing and using private shared libraries}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Register a custom QML type at runtime
+
+If you want to create instances of a C++ type from within QML, you can register
+the type in a similar way to the singleton code from the \l { Register a custom
+QML singleton type at runtime } { previous section }. This allows more complex
+data types and structures to be used and their type referenced by name.
+
+Let's suppose we want this stripped-down version of our \c Counter class to be
+instantiatable from QML.
+
+\quotefile example-others/src/counter-07.h
+
+We can register the class for use within QML by adding the following line to
+our \c main function. It should be added before the QML is instantiated.
+
+\quotefromfile example-others/src/harbour-demo-07.cpp
+
+\skipto qmlRegisterType
+\printuntil qmlRegisterType
+
+We can now import the type into our QML files and create instances directly
+within the QML.
+
+\quotefile example-others/qml/pages/MainPage07.qml
+
+In the above QML code we instantiate a \c Counter object with the QML property
+name \c qmlcounter. The \c count property of \c qmlcounter is initialised with
+the value 5.
+
+It's also possible to access the instantiated object from the C++ side. In
+general, accessing QML objects from C++ is considered bad practice, because it
+produces tight-coupling between the user interface QML and the background C++.
+It's preferable to avoid dependencies from the QML back to C++, so that the QML
+remains flexible and changeable without having an impact on the C++ code.
+However, we provide the details here as it helps to tie everything together.
+
+To access the \c qmlcounter object from C++ we must specify an object name for
+it:
+
+\quotefromfile example-others/qml/pages/MainPage07.qml
+
+\skipto property Counter qmlcounter
+\printuntil }
+
+We can then get a pointer to this instance from the C++ side using the
+following.
+
+\quotefromfile example-others/src/harbour-demo-07.cpp
+
+\skipto findChild
+\printuntil findChild
+
+The ordering is important here. The type must be registered before the QML is
+instantiated and the object pointer must be extracted afterwards. Hence, our
+\c main function might look something like this.
+
+\quotefile example-others/src/harbour-demo-07.cpp
+
+To reiterate, accessing QML objects from C++ is generally a bad idea. Where
+data must be shared between C++ and QML it's preferable to create objects with
+properties on the C++ side and expose them as context properties in the QML.
+
+If you're planning to submit your application for inclusion in the Jolla Store,
+there are some restrictions on the names you can use for your \c
+qmlRegisterType import. See the \l {https://harbour.jolla.com/faq#5.3.0}
+{Harbour FAQ} for more info.
+
+*/
+

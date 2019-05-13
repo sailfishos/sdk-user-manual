@@ -1,0 +1,84 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-private-qml-imports.html
+\previouspage {Installing and using private shared libraries}
+\nextpage {Storing application configuration files}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Installing and using private QML imports
+
+Any private QML imports should be installed under \c /usr/share/$$TARGET. By
+using the \c SailfishApp application calls described in the \l { How to use
+SailfishApp in your project } { previous sections }, the directory is
+automatically added to the QML import path, so any modules can be immediately
+imported into your QML.
+
+Let's take our example of the \c Counter module from the previous section on
+\l { Installing and using private shared libraries } { installing private shared
+libraries } and see how we might implement this as a pure QML module. We start
+by adding the folder \c harbour/sailfishapp/counter into the root of our
+project. The folder structure is designed to match the module name, which will
+be \c habour.sailfishapp.counter.
+
+Inside this folder we'll have two files. First, the QML that describes our \c
+Counter type, which we store as \c Counter10.qml. The \c 10 part of the
+filename represents the "1.0" version and is designed to simplify versioning
+later.
+
+\quotefile example10/harbour/sailfishapp/counter/Counter10.qml
+
+As you can see, this reflects the properties contained in our \c Counter class
+\l { Register a custom QML type at runtime } { from previously }. In order to
+turn the directory into a module, we must also include the following file
+called \c qmldir in the same directory.
+
+\quotefile example10/harbour/sailfishapp/counter/qmldir
+
+The first line states the module name. The following lines list the QML types,
+their version number and the file that contains their definition.
+
+In order for us to use this as a module, it must be installed in the \c
+/usr/share/$$TARGET folder on installation of our application. In other words,
+we'll end up with a directory \c
+/usr/share/$$TARGET/harbour/sailfishapp/counter containing our two module
+files. It's essential that the directory structure matches the name of the
+module. To have this installed in the correct place, we can add the following
+lines to our \c harbour-demo.pro file.
+
+\quotefromfile example10/example10.pro
+
+\skipto modules.files
+\printuntil INSTALLS
+
+It's also convenient to list the files in the \c DISTFILES structure of the
+\c harbour-demo.pro file so they appear as part of your project in Qt Creator.
+
+We can now import the module into the QML of our application.
+
+\quotefile example10/qml/pages/MainPage.qml
+
+We can access this object from our C++ using code similar to the following.
+
+\quotefile example10/src/harbour-demo.cpp
+
+This C++ code is provided for illustration, but in general accessing QML from
+C++ in this way is considered bad practice. It's better to define any data
+structures shared between C++ and QML in the C++ and access them from your QML,
+in order to ensure your QML remains flexible without changes impacting the
+underlying C++. As described in the \l {Register a custom QML type at runtime}
+section, you can also register QML modules using \c qmlRegisterType from within
+your C++.
+
+If you're planning to submit your application for inclusion in the Jolla Store,
+there are some restrictions on the names you can use for your import. See the
+\l {https://harbour.jolla.com/faq#5.3.0} {Harbour FAQ} for more info.
+
+*/
+

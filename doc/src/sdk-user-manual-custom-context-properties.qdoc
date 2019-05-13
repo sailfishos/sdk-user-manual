@@ -1,0 +1,67 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-custom-context-properties.html
+\previouspage {SailfishApp QML-only launcher}
+\nextpage {Register a custom QML singleton type at runtime}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Custom context properties
+
+If you're working with both C++ and QML, at some stage you'll need to share
+data between the two. Custom context properties are a straightforward way to
+expose C++ variables in your QML code. Such properties are managed through the
+\c QQmlContext object that can be obtained through your application's \c
+QQuckView.
+
+For example, in the following code the \c count variable on the C++ side is
+used to set a similarly named \c count variable for use on the QML side.
+
+\quotefile example-others/src/harbour-demo-03.cpp
+
+This can then be used as a variable within your QML code, for example as
+follows.
+
+\quotefile example-others/qml/pages/MainPage.qml
+
+Other basic types can also be passed from C++ to QML in this way. However, for
+these basic types, changes to the C++ variable will not be reflected in the
+variable on the QML side unless \c QQmlContext::setContextProperty() is called
+again. This can be seen in the following code, where the method is called every
+second to update the QML \c count variable.
+
+\quotefile example-others/src/harbour-demo-04.cpp
+
+If you want tighter and more dynamic integration between your C++ and QML, a \c
+QObject with defined properties is a better way to go. Because each properties
+is set to emit a signal when its value changes, the QML will automatically
+update to reflect changes to properties made on the C++ side, without having to
+explicitly update the context.
+
+For example, suppose we have this basic \c QObject with a single property
+called \c count. For this example, the class can be defined entirely in its
+header file.
+
+\quotefile example-others/src/counter.h
+
+We can add all of the properties of this C++ QObject for access on the QML side
+using a single call to \c QQmlContext::setContextObject(). Any changes made to
+the properties on the C++ side will be automatically reflected in the user
+interface QML.
+
+\quotefile example-others/src/harbour-demo-05.cpp
+
+For more info, see the \l {https://doc.qt.io/qt-5.6/QQmlContext.html} {Qt
+QQmlContext documentation}. More complex data structures can also be managed
+this way, for example by passing an extension of a \l
+{https://doc.qt.io/qt-5.6/QAbstractListModel.html} {QAbstractListModel}
+containing data to be displayed in a list or other model.
+
+*/
+

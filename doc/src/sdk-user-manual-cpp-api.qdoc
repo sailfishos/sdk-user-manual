@@ -1,0 +1,68 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-cpp-api.html
+\previouspage {How to use SailfishApp in your project}
+\nextpage {SailfishApp QML-only launcher}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title SailfishApp C++ API
+
+The libsailfishapp C++ API can be used to quickly instantiate and configure an
+application that fits in to the Sailfish OS environment and way of operating.
+For example it sets up paths to ensure your application can access the Sailfish
+Silica components, your apps private QML imports and your apps resources; it
+simplifies provision of translations; and it provides convenience functions for
+storing data in the correct location on the filesystem. If you're thinking of
+submitting your application for inclusion in the Jolla Store, use of the API
+isn't a requirement, but proper use it will significantly improve the chance of
+your app passing the \l {https://harbour.jolla.com/} {Harbour QA} process.
+
+For the most common use of the API, start by accessing the \c QGuiApplication
+instance for your programme by calling the \c SailfishApp::application()
+method, passing in any remaining arguments from the command line that you don't
+want to consume yourself. This will return a pointer to the single \c
+QGuiApplication instance for your application. This provides the main Qt event
+loop, lets you manage the application lifecycle, and get basic information
+about the screen, window configuration and so on.
+
+Before calling the main event loop, you'll need to tell \c SailfishApp which
+QML file to use for the topmost window. This can be set using a call to \c
+SailfishApp::createView() to access the application \c QQuickView instance. Call
+the \c setSource() method of this \c QQuickView instance to configure the
+location of the QML file to use.
+
+\quotefile example01/src/harbour-demo.cpp
+
+In this example code the application \c SailfishApp::pathTo() is used to specify
+the location of the root QML file to use. A call to \c SailfishApp::pathTo()
+takes a relative path inside your application's data folder and converts it
+into a fully qualified path. Your application's data directory is located at \c
+/usr/share/$$TARGET/, so in this case the fully qualified path of the QML file
+will be \c /usr/share/$$TARGET/qml/harbour-demo.qml
+
+The above example allows for full integration between your C++ code and QML, as
+described below. However, if your application is written entirely using QML,
+and requires only limited interaction with C++ code, then you can simplify the
+C++ even further by making use of \c SailfishApp::main(). This wraps all of the
+code in the example above into a single call, which you can deploy like this.
+
+\quotefile example-others/src/harbour-demo-02.cpp
+
+The call to \c SailfishApp::main() will load in the QML file located at \c
+/usr/share/$$TARGET/qml/$$TARGET.qml as the topmost window. It then enters the
+main event loop and only returns once all windows have been closed.
+
+Use of \c SailfishApp::main() is a great way to get a Sailfish application
+up-and-running in the quickest time and with the smallest amount of boilerplate
+code. If you find you need more flexibility, you can always convert it to use
+\c SailfishApp::application() later.
+
+*/
+

@@ -1,0 +1,53 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-qml-singleton.html
+\previouspage {Custom context properties}
+\nextpage {Register a custom QML type at runtime}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Register a custom QML singleton type at runtime
+
+In some cases, where there's a need for a single populated data structure to be
+accessible from everywhere, a singleton class may be a better alternative to
+using a \l { Custom context properties } {custom context property}. For
+example, building on the code from the \l { Custom context properties }
+{previous section}, we can turn the \c Counter class into a singleton by
+adding an \c { #include <QQmlEngine> } declaration along with the following
+public static methods and private member to the \c Counter class header file:
+
+\quotefromfile example-others/src/counter-06.h
+
+\skipuntil int m_count
+\printuntil Counter * instance
+
+and in a separate \c counter.cpp file, implement the methods as follows.
+
+\quotefile example-others/src/counter-06.cpp
+
+This singleton class can be registered for access within QML, by adding the
+following code into your \c main function.
+
+\quotefromfile example-others/src/harbour-demo-06.cpp
+
+\skipto Counter::instantiate
+\printuntil Counter::provider
+
+After which it becomes accessible from any QML file where \c
+harbour.sailfishapp.counter is imported, like this:
+
+\quotefile example-others/qml/pages/MainPage06.qml
+
+If you're planning to submit your application for inclusion in the Jolla Store,
+there are some restrictions on the names you can use for your \c
+qmlRegisterSingletonType import. See the \l
+{https://harbour.jolla.com/faq#5.3.0} {Harbour FAQ} for more info.
+
+*/
+

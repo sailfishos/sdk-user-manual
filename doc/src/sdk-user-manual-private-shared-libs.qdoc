@@ -1,0 +1,150 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-private-shared-libstype.html
+\previouspage {Register a custom QML type at runtime}
+\nextpage {Installing and using private QML imports}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Installing and using private shared libraries
+
+\section1 Overview
+
+If you have your own shared libraries that you want your application to
+dynamically link against at runtime, they should:
+
+\list 1
+\li be included in your application's RPM, and
+\li be installed in the \c /usr/share/$$TARGET folder.
+\endlist
+
+These requirements must be met for your application to pass \l
+{https://harbour.jolla.com/} {Harbour QA} and to be included in the Jolla
+Store. You can't, for example, have a separate package containing the library
+as a dependency of your application.
+
+If you arrange your application in this way and use \c SailfishApp as
+described in \l { How to use SailfishApp in your project } {previous sections },
+then the \c rpath (the runtime library search path that gets baked into your
+application) of your application will be automatically set up to point to
+\c \usr\share\$$TARGET\lib, and so your application should pick up the shared
+libraries from the correct location without having to specify it separately.
+See the \l {https://harbour.jolla.com/faq#Shared_Libraries} {Jolla Harbour FAQ}
+for more info.
+
+When you're developing a project in QtCreator, you can either build a shared
+library directly as part of your project, or include the binary.
+
+\section1 Include a prebuilt shared library in your application project
+
+It may be that you already have a library in binary form you want to include
+with your application, for example where you've built the library in a
+completely separate project.
+
+In this case, you can store a copy of the library binary and headers in your
+application project and reference them in the project files in order to have
+the library installed alongside the application in the correct location.
+
+For example, suppose we've built the \c Counter class described in the \l {
+Register a custom QML type at runtime } { previous section } into its own
+library called \c libdemo and suppose we want to include it in the
+\c harbour-demo application project. We create a \c libdemo subdirectory inside
+our project directory containing the header files \c libdemo.h, the
+\c libdemo.o shim and the dynamic library \c libdemo.so.1. We can then add the
+following lines to our \c harbour-demo.pro file in order for the application to
+be built against the library.
+
+\quotefromfile example08/example08.pro
+
+\skipto INCLUDEPATH
+\printuntil LIBS
+
+In addition, we want the dynamic library to be included in the RPM package and
+installed in the correct location when the application is installed. To achieve
+this, we add the following further lines to the \c harbour-demo.pro file.
+
+\quotefromfile example08/example08.pro
+
+\skipto libdemo.files
+\printuntil INSTALLS
+
+These small changes allow the application to be built against the library and
+for the library to be installed in the correct location to pass the Jolla
+\l {https://harbour.jolla.com/} {Harbour QA}.
+
+\section1 Build a shared library as part of your application project
+
+There are a number of ways to structure a Qt project to build both an
+application and a library into a single package. Here we present one approach
+that involves using a metaproject to hold each subproject. For the main
+application we will use the same code as above, with the application called
+\c harbour-demo. The library will contain just the single \c Counter class
+also described above, in a library called \c libdemo.
+
+Our project structure looks like this.
+
+\badcode
+harbour-demo
+|   harbour-demo.pro
+|
++---harbour-demo-app
+|   |   harbour-demo-app.pro
+|   |
+|   +---icons
+|   |   |   ...
+|   |
+|   +---qml
+|   |   |   harbour-demo.qml
+|   |   |   ...
+|   |
+|   +---src
+|       |   harbour-demo.cpp
+|
++---libdemo
+|   |   libdemo.pro
+|   |   libdemo.h
+|   |   libdemo.cpp
+|
++---rpm
+    |   harbour-demo.spec
+\endcode
+
+The top level \c harbour-demo.pro file is a meta project that just links to the
+other two subprojects as follows.
+
+\quotefile example09/example09.pro
+
+The \c harbour-demo-app.pro file contains the same \c SailfishApp details we
+described in the preceding sections for an application without any libraries,
+as you can see here:
+
+\quotefromfile example09/harbour-demo-app/harbour-demo-app.pro
+
+\printuntil HEADERS
+
+In addition we append the following lines to the end of this file, in order to
+compile, link against and install the libdemo library.
+
+\printuntil INSTALLS
+
+Similarly our \c libdemo.pro project files contains the usual material for
+building a library.
+
+\quotefile example09/libdemo/libdemo.pro
+
+The only other change we make to the structure is to ensure the \c rpms folder
+from our original project is now contained in the metaproject, rather than the
+application or library sub projects.
+
+Building the project will produce a single RPM package containing both the
+application and library installed in the correct locations, and so that the
+application can find the library at runtime.
+
+*/
+

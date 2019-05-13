@@ -1,0 +1,42 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: David Llewellyn-jones <david.llewellyn-jones@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\contentspage {Sailfish SDK User Manual}
+\page index.html
+
+\title Sailfish SDK User Manual
+
+To ease development of applications for Sailfish OS and to make sure paths for
+the applications are set correctly and application startup time is
+accelerated, third party applications on Sailfish OS should use libsailfishapp.
+This library provides certain convenience functions within the \c SailfishApp
+namespace to set up your project, install all files into the right directories,
+and get important paths at runtime via convenience methods.
+
+This document also serves to describe the functionality of libsailfishapp so
+that developers who cannot use it in their projects can use the info provided
+here as a guide for how to replicate the directory layout and paths. However,
+we generally recommend using libsailfishapp where possible, as it will allow
+applications to easily and automatically integrate well with Sailfish OS.
+
+\list
+    \li \l {How to use SailfishApp in your project}
+    \li \l {SailfishApp C++ API}
+    \li \l {SailfishApp QML-only launcher}
+    \li \l {Custom context properties}
+    \li \l {Register a custom QML singleton type at runtime}
+    \li \l {Register a custom QML type at runtime}
+    \li \l {Installing and using private shared libraries}
+    \li \l {Installing and using private QML imports}
+    \li \l {Storing application configuration files}
+    \li \l {Storing application data and cached files}
+\endlist
+
+*/
+
