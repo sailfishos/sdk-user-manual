@@ -12,3 +12,7 @@ SUBDIRS += example01 \
     example-others/example11.pro \
     example-others/example12.pro \
     example-others/example13.pro
+
+# The pre-built shared libraries used for example08 are built by example09, so
+# we need to build example09 before building example08.
+example08.depends += example09
