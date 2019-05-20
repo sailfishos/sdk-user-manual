@@ -6,6 +6,11 @@ Group: Documentation
 License: CC BY-NC-SA 3.0 / BSD
 URL: https://github.com/sailfishos/sdk-user-manual
 Source: %{name}-%{version}.tar.bz2
+BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  desktop-file-utils
 
 %description
 Documentation for introducing users to the Sailfish SDK. Details how to create
