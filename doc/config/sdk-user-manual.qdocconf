@@ -26,7 +26,7 @@ outputprefixes.QML = qml-sdkmanual-
 qhp.projects = sdkmanual
 
 qhp.sdkmanual.subprojects = manual
-qhp.sdkmanual.subprojects.manual.title = Sailfish SDK User Manuall
+qhp.sdkmanual.subprojects.manual.title = Sailfish SDK User Manual
 qhp.sdkmanual.subprojects.manual.indexTitle = Sailfish SDK User Manual
 qhp.sdkmanual.subprojects.manual.selectors = fake:page
 qhp.sdkmanual.subprojects.manual.type = manual

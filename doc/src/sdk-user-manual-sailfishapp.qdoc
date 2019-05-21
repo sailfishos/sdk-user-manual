@@ -66,6 +66,20 @@ Sailfish OS style.
 
 \section1 Using i18n support in your project
 
+To allow translations to be used in an application, Sailfish OS builds on the
+internationalization capabilies of Qt. This allows, for example, translatable
+strings to be used rather than string literals within code.
+
+For more general information about how these Qt-based internationalization
+features works, see the \l {https://doc.qt.io/qt-5/qtlinguist-index.html} {Qt
+Linguist Manual}.
+
+When referring to translatable strings within your code, it's possible to use
+either the untranslated strings directly as references, or id-based references.
+See the Qt documentation on \l
+{https://doc.qt.io/qt-5/linguist-id-based-i18n.html} {id based translations}
+for more info on the topic.
+
 To use the internationalization convenience features of libsailfishapp, do the
 following.
 
@@ -76,7 +90,7 @@ following.
 CONFIG += sailfishapp_i18n
 \endcode
 
-If you use id based translations also add:
+To use id based translations you should also add the following.
 
 \code
 CONFIG += sailfishapp_i18n_idbased
@@ -92,19 +106,29 @@ section:
 \endcode
 \endlist
 
+As an alternative to running \c{qmake} and \c{make} at the command line in
+steps 2 and 3 above, you can instead update the translations directly from the
+Sailfish SDK IDE. Open the \b Tools menu, then select the \b {External >
+Linguist > Update translations (lupdate)} option. This also avoids having to
+rebuild the entire project again.
+
 To add a new language to your project:
 
 \list 1
 \li In your main .pro file, add (with $LANG replaced with the language):
 
 \code
-TRANSLATIONS += translations/$APPNAME-$LANG.ts}
+TRANSLATIONS += translations/$APPNAME-$LANG.ts
 \endcode
 
 (for example, for German, use "$APPNAME-de.ts", etc...)
 \li Run \c{qmake}
 \li Run \c{make}
 \endlist
+
+As before, instead of steps 2 and 3, you can also use the \b {Tools > External >
+Linguist > Update translations (lupdate)} option from the IDE to regenerate
+your translation files.
 
 If during development you want to skip building the translations every time,
 you can simply comment out the line

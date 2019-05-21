@@ -10,7 +10,11 @@ public:
     Counter(QObject * parent = 0) : QObject(parent), m_count(0) {};
     int count() { return m_count; };
     void setCount(int count) {
-        if (m_count != count) { m_count = count; emit countChanged(); }
+        if (m_count == count)
+            return;
+
+        m_count = count;
+        emit countChanged();
     }
 signals:
     void countChanged();

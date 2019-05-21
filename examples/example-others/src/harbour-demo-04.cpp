@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
         count++;
         context->setContextProperty("count", count); // Update variable value
                                                      // once per second
-
     });
     timer.start();
 
