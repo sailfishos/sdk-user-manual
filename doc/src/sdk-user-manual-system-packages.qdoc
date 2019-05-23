@@ -36,5 +36,8 @@ If you run into problems when trying to build system packages, you should try di
 shadow builds: Click the "Projects" button on the left side of the Qt Creator window.
 Within the "Build Settings" section, verify that "Shadow build" is not selected.
 
+For more information about shadow builds, see
+\l {https://doc.qt.io/qtcreator/creator-glossary.html#glossary-shadow-build}
+{Shadow build in Qt Creator Manual}
 */
 
