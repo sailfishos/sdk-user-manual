@@ -1,0 +1,43 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Jolla Ltd.
+** Contact: Ville Nummela <ville.nummela@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-system-packages.html
+\previouspage {Storing application data and cached files}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Building system packages
+
+If you are interested in developing the Sailfish OS itself, you should start by reading
+the \l {https://sailfishos.org/wiki/Platform_Development}
+{Platform Development documentation} which is available online. From there you can find
+the instructions for installing the Platform SDK, which contains the tools most often
+used for building system packages.
+
+However, if you are used to the comfort provided by the Sailfish (Application) SDK, or
+if you are restricted to a platform which is not supported by the Platform SDK, you can
+use the Sailfish SDK to build your system packages as well.
+
+There are some limitations which apply for building system packages with the Sailfish
+SDK. At the moment, only those packages are supported which use the same qmake/make build
+process as Sailfish applications.
+
+\section1 Shadow build
+
+Some system packages, even though they do use qmake and make, also have additional steps
+included in their .spec files. These steps might include e.g. running scripts from the
+source directory, or modifying the sources. These are not supported with shadow builds.
+If you run into problems when trying to build system packages, you should try disabling
+shadow builds: Click the "Projects" button on the left side of the Qt Creator window.
+Within the "Build Settings" section, verify that "Shadow build" is not selected.
+
+For more information about shadow builds, see
+\l {https://doc.qt.io/qtcreator/creator-glossary.html#glossary-shadow-build}
+{Shadow build in Qt Creator Manual}
+*/
+
