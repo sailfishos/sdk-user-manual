@@ -1,0 +1,120 @@
+/****************************************************************************************
+**
+** Copyright (C) 2019 Open Mobile Platform LLC.
+** Contact: Martin Kampas <martin.kampas@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-noninteractive.html
+\previouspage {Building system packages}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Using Sailfish SDK in an automated environment
+
+\section1 Installing and managing Sailfish SDK noninteractively
+
+In addition to the ordinary arguments described when the \c --help option is
+used, the Sailfish SDK Installer/Maintenance Tool accepts a few arguments in
+form of variable assignments that enable unattended SDK installation and
+maintenance.
+
+\table
+\row
+    \li {2, 1} \c non-interactive=1
+\row
+    \li
+    \li Activate non-interactive mode: use default values, automatically proceed
+        to next page. Except when running the uninstaller, this requires passing
+        \c accept-licenses=1 as well.
+\row
+    \li {2, 1} \c accept-licenses=1
+\row
+    \li
+    \li Use this option to confirm you have read and do accept the licenses that
+        would be presented on the License Agreement page during normal operation.
+
+\row
+    \li {2, 1} \c add-packages=<name>[,<name>]...
+\row
+    \li
+    \li Select more packages for istallation. When used with the Maintenance
+        Tool, it needs to be combined with the \c --manage-packages option.
+
+\row
+    \li {2, 1} \c remove-packages=<name>[,<name>]...
+\row
+    \li
+    \li Deselect packages. When used with the Maintenance Tool, it needs to be
+        combined with the \c --manage-packages option.
+
+\row
+    \li {2, 1} \c list-packages=1
+\row
+    \li
+    \li Provide listing of the available packages and exit. Needs the \c
+        --verbose option. When used with the Maintenance Tool, it needs to be
+        combined with the \c --manage-packages option. Each relevant line in the
+        output is prefixed with \c "list-packages::" and contains the following
+        items describing a package:
+        \list
+        \li Status (one of \c available or \c installed)
+        \li Name (e.g. \c org.example.component)
+        \li Quoted display name (e.g. \c {"Foo Bar"})
+        \li The word \c requires, optionally followed by comma separated list of
+            dependencies of this package
+        \endlist
+\endtable
+
+Execution on a headless system is possible with the help of the standard Qt
+option \c {-platform minimal}, likely in combination with \c --verbose.
+
+Examples follows.
+
+Install Sailfish SDK
+
+\badcode
+$ ./installer.run --verbose non-interactive=1 accept-licenses=1
+\endcode
+
+List packages
+
+\badcode
+$ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1 \
+    accept-licenses=1 --manage-packages list-packages=1 \
+    |grep 'list-packages:: '
+...
+[1065] list-packages:: installed org.merproject.mersdk "Sailfish OS Build Engin
+e" requires
+[1065] list-packages:: installed org.merproject.targets "Sailfish OS Build Targ
+ets" requires org.merproject.mersdk->=2018.10.29-1
+[1065] list-packages:: installed org.merproject.emulators "Sailfish OS Emulator
+s" requires org.merproject.mersdk->=2019.02.26-1
+...
+\endcode
+
+Add packages
+
+\badcode
+$ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1 \
+    accept-licenses=1 --manage-packages \
+    add-packages=org.merproject.emulators.emulator_latest
+\endcode
+
+Remove packages
+
+\badcode
+$ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1 \
+    accept-licenses=1 --manage-packages \
+    remove-packages=org.merproject.emulators.emulator_latest
+\endcode
+
+Uninstall the SDK
+
+\badcode
+$ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1
+\endcode
+
+*/
+
