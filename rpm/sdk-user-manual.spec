@@ -39,8 +39,7 @@ make %{_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
-mkdir -p %{buildroot}/%{_docdir}/%{name}
-cp -R doc/html/* %{buildroot}/%{_docdir}/%{name}/
+make install_docs INSTALL_ROOT=%{buildroot}
 
 %files doc
 %defattr(-,root,root,-)
