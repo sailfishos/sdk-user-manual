@@ -35,7 +35,7 @@ for %{name}.
 
 %build
 %qmake5 -r VERSION=%{version}
-make
+make %{_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}

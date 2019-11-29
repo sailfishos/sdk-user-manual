@@ -37,6 +37,7 @@ applications to easily and automatically integrate well with Sailfish OS.
     \li \l {Storing application configuration files}
     \li \l {Storing application data and cached files}
     \li \l {Building system packages}
+    \li \l {Using Sailfish SDK in an automated environment}
 \endlist
 
 */
