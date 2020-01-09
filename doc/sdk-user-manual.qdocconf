@@ -1,27 +1,13 @@
-language        = Cpp
-
 project         = Sailfish SDK User Manual
 description     = Sailfish SDK and Sailfish App Library Reference
 versionsym      =
 version         = 1.0.0
 url             = https://github.com/sailfishos/sdk-user-manual/
 
-headerdirs += $$PWD/../doc/src
-sourcedirs += $$PWD/../doc/src
+sourcedirs += src
+exampledirs = src ../examples
 
-exampledirs = $$PWD/../examples \
-              $$PWD/../doc/src
-
-# See https://bugreports.qt.io/browse/QTBUG-59045
-Cpp.ignoretokens += SAILFISHAPP_EXPORT
-
-outputformats = HTML
-outputdir = $$PWD/../doc/html
-base = file:$$PWD/../doc/html
-tagfile = $$PWD/../doc/html/sdk-user-manual.tags
-
-outputprefixes = QML
-outputprefixes.QML = qml-sdkmanual-
+#tagfile = $$PWD/../doc/html/sdk-user-manual.tags
 
 qhp.projects = sdkmanual
 
@@ -41,8 +27,25 @@ qhp.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
 qhp.sdkmanual.customFilters.sdkmanual.name = Sailfish OS User Manual 1.0.0
 qhp.sdkmanual.customFilters.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
 
-imagedirs = images
-
 navigation.homepage = "Sailfish SDK User Manual"
 
-include(qt-html-templates.qdocconf)
+HTML.footer = \
+    "  <div class=\"ft\">\n" \
+    "    <span></span>\n" \
+    "  </div>\n" \
+    "</div> \n" \
+    "<div class=\"footer\">\n" \
+    "  <p>\n" \
+    "     <acronym title=\"Copyright\">&copy;</acronym> 2019 Jolla OY\n" \
+    "  <p>\n" \
+    "     All other trademarks are property of their respective owners.\n" \
+    "  <br />\n" \
+    "    This document may be used under the terms of the Creative Commons" \
+    "    <a href=\"https://creativecommons.org/licenses/by-nc-sa/3.0/\">" \
+    "    Attribution-NonCommercial-ShareAlike 3.0 Unported licence" \
+    "    (CC BY-NC-SA 3.0)</a>." \
+    "  <br />\n" \
+    "    The example code may be used under the terms of the" \
+    "    <a href=\"https://opensource.org/licenses/BSD-3-Clause\">" \
+    "    BSD License 2.0 (3-clause)</a>." \
+    "</div>\n"
