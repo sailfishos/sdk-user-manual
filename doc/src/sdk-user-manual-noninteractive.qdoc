@@ -67,8 +67,9 @@ maintenance.
         \endlist
 \endtable
 
-Execution on a headless system is possible with the help of the standard Qt
-option \c {-platform minimal}, likely in combination with \c --verbose.
+Execution on a headless system is possible with the help of the
+\c QT_QPA_PLATFORM environment variable. Set \c QT_QPA_PLATFORM=minimal in the
+environment to achieve headless execution.
 
 Examples follows.
 
