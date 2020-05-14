@@ -8,7 +8,7 @@
 
 /*!
 \page sdk-user-manual-noninteractive.html
-\previouspage {Building system packages}
+\previouspage {Building packages with CMake}
 \contentspage {Sailfish SDK User Manual}{Contents}
 
 \title Using Sailfish SDK in an automated environment
