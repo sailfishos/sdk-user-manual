@@ -1,0 +1,33 @@
+/****************************************************************************************
+**
+** Copyright (C) 2020 Open Mobile Platform LLC.
+** Contact: Ville Nummela <ville.nummela@jolla.com>
+** See README and LICENSE.txt for licence details.
+**
+****************************************************************************************/
+
+/*!
+\page sdk-user-manual-cmake..html
+\previouspage {Building system packages}
+\nextpage {Using Sailfish SDK in an automated environment}
+\contentspage {Sailfish SDK User Manual}{Contents}
+
+\title Building packages with CMake
+
+Sailfish SDK supports building packages with CMake. 
+
+It is possible to create a CMake based Sailfish OS application project either 
+
+\list
+    \li from Qt Creator, by using the "Sailfish OS Qt Quick Application" wizard as 
+        usually, but selecting "CMake" on the "Build System" page, or
+    \li with "sfdk init" command by passing the -b|--builder option with "cmake" as 
+        argument.
+\endlist
+
+Please check the generated project for hints how to use CMake with Sailfish SDK.
+
+For more information about CMake, see
+\l {https://cmake.org/cmake/help/v3.11/}{CMake Reference Documentation}
+*/
+
