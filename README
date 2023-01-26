@@ -1,7 +1,7 @@
 Sailfish SDK User Manual
 ========================
 
-Documentaiton license:
+Documentation license:
     Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)
     https://creativecommons.org/licenses/by-nc-sa/3.0/
 
@@ -10,6 +10,6 @@ Example code licence:
     https://opensource.org/licenses/BSD-3-Clause
 
 Documentation for introducing users to the Sailfish SDK. Details how to create
-Sailfish Applications using the libsafailfishapp support library.
+Sailfish Applications using the libsailfishapp support library.
 
 
