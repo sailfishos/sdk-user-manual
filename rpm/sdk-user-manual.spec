@@ -13,7 +13,7 @@ Sailfish Applications using the libsafailfishapp support library.
 
 %package doc
 Summary: Documentation for %{name}.
-BuildRequires: mer-qdoc-template
+BuildRequires: sailfish-qdoc-template
 
 %description doc
 This package contains the documentation for %{name}.
@@ -39,7 +39,6 @@ make %{_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
-make install_docs INSTALL_ROOT=%{buildroot}
 
 %files doc
 %defattr(-,root,root,-)

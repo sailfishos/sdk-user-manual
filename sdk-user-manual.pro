@@ -1,7 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS = examples
+SUBDIRS = doc examples
 
-include(doc/doc.pri)
 
 OTHER_FILES += README \
     rpm/sdk-user-manual.spec
