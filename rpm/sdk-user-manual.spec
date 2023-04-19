@@ -39,6 +39,7 @@ make %{_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
+install -m 644 doc/html/sdk-user-manual.index %{buildroot}/%{_docdir}/%{name}/
 
 %files doc
 %defattr(-,root,root,-)
