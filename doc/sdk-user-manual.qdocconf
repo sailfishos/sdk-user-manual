@@ -1,8 +1,8 @@
-project         = Sailfish SDK User Manual
+project         = sdk-user-manual
 description     = Sailfish SDK and Sailfish App Library Reference
 versionsym      =
 version         = 1.0.0
-url             = https://github.com/sailfishos/sdk-user-manual/
+url             = $BASE_URL/foo-bar
 
 sourcedirs += src
 exampledirs = src ../examples
@@ -36,7 +36,7 @@ HTML.footer = \
     "</div> \n" \
     "<div class=\"footer\">\n" \
     "  <p>\n" \
-    "     <acronym title=\"Copyright\">&copy;</acronym> 2019 Jolla Ltd.\n" \
+    "     <acronym title=\"Copyright\">&copy;</acronym> 2019-2023 Jolla Ltd.\n" \
     "     <acronym title=\"Copyright\">&copy;</acronym> 2020 Open Mobile Platform LLC.\n" \
     "  <p>\n" \
     "     All other trademarks are property of their respective owners.\n" \
