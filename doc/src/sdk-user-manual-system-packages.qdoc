@@ -2,7 +2,7 @@
 **
 ** Copyright (C) 2019 Jolla Ltd.
 ** Copyright (C) 2020 Open Mobile Platform LLC.
-** Contact: Ville Nummela <ville.nummela@jolla.com>
+** Copyright (C) 2026 Jolla Mobile Ltd
 ** See README and LICENSE.txt for licence details.
 **
 ****************************************************************************************/
@@ -16,18 +16,17 @@
 \title Building system packages
 
 If you are interested in developing the Sailfish OS itself, you should start by reading
-the \l {https://sailfishos.org/wiki/Platform_Development}
+the \l {https://docs.sailfishos.org/Develop/Platform/}
 {Platform Development documentation} which is available online. From there you can find
-the instructions for installing the Platform SDK, which contains the tools most often
-used for building system packages.
+the instructions for getting the Sailfish OS source code and using the command line
+interfaces of the Sailfish SDK for building and deploying platform packages.
 
-However, if you are used to the comfort provided by the Sailfish (Application) SDK, or
-if you are restricted to a platform which is not supported by the Platform SDK, you can
-use the Sailfish SDK to build your system packages as well.
+However, if you are used to the comfort provided by Qt Creator, you can use it to build
+your system packages as well.
 
-There are some limitations which apply for building system packages with the Sailfish
-SDK. At the moment, only those packages are supported which use the same qmake/make build
-process as Sailfish applications.
+There are some limitations which apply for building system packages with Qt Creator. At
+the moment, only those packages are supported which use the same qmake/make build process
+as Sailfish applications.
 
 \section1 Shadow build
 

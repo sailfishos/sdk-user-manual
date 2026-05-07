@@ -24,7 +24,7 @@ qhp.sdkmanual.indexTitle = Sailfish SDK User Manual
 qhp.sdkmanual.indexRoot =
 
 qhp.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
-qhp.sdkmanual.customFilters.sdkmanual.name = Sailfish OS User Manual 1.0.0
+qhp.sdkmanual.customFilters.sdkmanual.name = Sailfish SDK User Manual 1.0.0
 qhp.sdkmanual.customFilters.sdkmanual.filterAttributes = org.sailfishos.sdkusermanual 1.0.0
 
 navigation.homepage = "Sailfish SDK User Manual"
@@ -38,6 +38,7 @@ HTML.footer = \
     "  <p>\n" \
     "     <acronym title=\"Copyright\">&copy;</acronym> 2019-2023 Jolla Ltd.\n" \
     "     <acronym title=\"Copyright\">&copy;</acronym> 2020 Open Mobile Platform LLC.\n" \
+    "     <acronym title=\"Copyright\">&copy;</acronym> 2026 Jolla Mobile Ltd\n" \
     "  <p>\n" \
     "     All other trademarks are property of their respective owners.\n" \
     "  <br />\n" \

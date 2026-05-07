@@ -1,7 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2019 Open Mobile Platform LLC.
-** Contact: Martin Kampas <martin.kampas@jolla.com>
+** Copyright (C) 2026 Jolla Mobile Ltd
 ** See README and LICENSE.txt for licence details.
 **
 ****************************************************************************************/
@@ -86,12 +86,12 @@ $ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1 \
     accept-licenses=1 --manage-packages list-packages=1 \
     |grep 'list-packages:: '
 ...
-[1065] list-packages:: installed org.merproject.mersdk "Sailfish OS Build Engin
-e" requires
-[1065] list-packages:: installed org.merproject.targets "Sailfish OS Build Targ
-ets" requires org.merproject.mersdk->=2018.10.29-1
-[1065] list-packages:: installed org.merproject.emulators "Sailfish OS Emulator
-s" requires org.merproject.mersdk->=2019.02.26-1
+[4525] list-packages:: installed org.merproject.mersdk "Build Engine" requires
+org.merproject.mersdkdocker
+[4525] list-packages:: installed org.merproject.targets "Build Targets" require
+s org.merproject.mersdk->=2018.10.29-1
+[4525] list-packages:: installed org.merproject.emulators "Emulators" requires
+org.merproject.mersdk->=2019.02.26-1
 ...
 \endcode
 
@@ -102,6 +102,10 @@ $ ~/SailfishOS/SDKMaintenanceTool --verbose non-interactive=1 \
     accept-licenses=1 --manage-packages \
     add-packages=org.merproject.emulators.emulator_latest
 \endcode
+
+Note that packages from the \b Emulators and \b {Build Targets} groups can be
+conveniently managed with \c sfdk, the command line frontend of the Sailfish
+SDK.
 
 Remove packages
 
